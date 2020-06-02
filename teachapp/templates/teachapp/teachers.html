@@ -1,0 +1,26 @@
+{% extends "teachapp/home.html" %}
+
+{% block content %}
+{% for teacher in teachers_list %}
+<div class="card" style="width: 15rem; display:inline-block; margin: 10px">
+    <div class="card-body">
+        <h5 class="card-title">{{teacher.name}}</h5>
+        <p class="card-text">{{teacher.code}}</p>
+        <p class="card-text">{{teacher.subject}}</p>
+        <p class="card-text">{{teacher.degree}}</p>
+        <a href="{% url 'update_teacher' teacher.id %}" class="btn btn-secondary btn-sm  text-white">Edit</a>
+        <div>
+            <form action="{% url 'delete_teacher' teacher.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm text-white" >Delete</button>
+            </form>
+        </div>
+        
+    </div>
+    
+    </div>
+{% endfor %}
+
+
+
+{% endblock content %}
